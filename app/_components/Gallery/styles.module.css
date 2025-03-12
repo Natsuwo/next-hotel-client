@@ -1,0 +1,29 @@
+.gallerySection {
+  background-color: #fff;
+  padding: 60px 0px;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.thumbnail {
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 16/9;
+  width: 100%;
+  height: fit-content;
+}
+
+.thumbnail img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  transition: all 300ms linear;
+}
+
+.thumbnail img:hover {
+  transform: scale(1.2);
+}

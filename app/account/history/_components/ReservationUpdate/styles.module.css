@@ -1,0 +1,100 @@
+
+
+.overviewDescription {
+  padding: 12px;
+  border: 1px solid #dedede;
+}
+
+.overviewDescription h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.formControl {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formControl > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+
+.formControl div label {
+  font-size: 17px;
+  color: #656a70;
+}
+
+.formControl div input, 
+.formControl div select {
+  font-size: 17px;
+  border-radius: none;
+  border: 1px solid #656a70;
+  outline: none;
+  padding: 12px 12px;
+}
+
+.errorMessage {
+  font-size: 14px;
+  color: red;
+}
+
+.bookingSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.bookingSummary h3 {
+  font-size: 18px;
+  padding: 6px 0px;
+  font-weight: 500;
+  border-bottom: 1px solid #dedede;
+  margin-bottom: 4px;
+}
+
+
+.bookingSummary p {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+
+.bookingSummary p span:first-of-type {
+  color: #656a70;
+}
+
+.bookingSummary p span:last-of-type {
+  color: #131313;
+  font-weight: 600;
+}
+
+.actionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.actionsContainer button {
+  border: none;
+  outline: none;
+  padding: 8px 16px;
+  text-align: center;
+  color: #fff;
+  transition: all 150ms linear;
+  cursor: pointer;
+  width: 100% !important;
+}
+
+.editButton {
+  background-color: #131313;
+}
+
+.deleteButton {
+  background-color: #dc143c;
+}

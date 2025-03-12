@@ -1,0 +1,24 @@
+.Card {
+  background-color: #fff;
+}
+
+
+
+.thumbnailContainer {
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 16/9;
+  width: 100%;
+  height: fit-content;
+}
+
+.thumbnailContainer img {
+  width: 100%;
+  /* aspect-ratio: 4/3; */
+  transition: all 300ms linear;
+}
+
+
+.thumbnailContainer .zoomOnHover img:hover {
+  transform: scale(1.2);
+}

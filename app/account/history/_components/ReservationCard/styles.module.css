@@ -1,0 +1,145 @@
+.reservationItem {
+  width: 100%;
+  box-shadow: 2px 2px 8px 1px #DDD;
+  margin-bottom: 20px;
+}
+
+.reservationTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reservationEstimation {
+  font-size: 12px;
+  padding: 2px 6px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.onGoing {
+  background-color: rgba(64, 221, 59, 0.74);
+  color: #131313;
+}
+.past {
+  background-color: #d8143bbb;
+  color: #fff;
+
+}
+.future {
+  background-color: rgba(59, 62, 221, 0.719);
+  color: #fff;
+
+}
+
+@media (min-width: 780px) {
+  .reservationItem {
+    display: grid;
+    grid-template-columns: 180px 1fr; 
+    /* height: 132px; */
+  }
+}
+
+.reservationThumbnail {
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4/3;
+  width: 100%;
+  height: fit-content;
+}
+
+.reservationThumbnail img {
+  width: 100%;
+  aspect-ratio: 4/3;
+}
+
+.reservationInfos {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (min-width: 780px) {
+  .reservationInfos {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+}
+
+.price {
+  color: #dc143c;
+  font-weight: 600;
+}
+
+
+.reservationOverview {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 6px
+}
+
+.reservationOverview h2 {
+  font-size: 22px;
+}
+
+.reservationOverview p {
+  color: #656a70;
+}
+
+.reservationPriceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+@media (min-width: 780px) {
+  .reservationPriceContainer {
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+
+
+.reservationPriceContainer p {
+  font-size: 17px;
+  font-weight: 600;
+  color: #dc143c;
+  text-align: center;
+}
+
+@media (min-width: 780px) {
+  .reservationPriceContainer p {
+    text-align: right;
+  }
+}
+
+
+/* .controlButtons {
+  display: flex;
+  gap: 4px;
+} */
+
+.overviewButton {
+  display: inline-block;
+  padding: 12px 16px;
+  background-color: #1f1f1f;
+  color: #fff;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 150ms linear;
+}
+
+.overviewButton:not(:disabled):hover {
+  background-color: #131313
+}
+
+.overviewButton:disabled {
+  background-color: #2b2b2b;
+  cursor: not-allowed;
+}

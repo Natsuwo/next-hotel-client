@@ -1,0 +1,39 @@
+.amenitiesTable {
+  margin: auto;
+  color: #181b20;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+}
+
+.amenitiesTable tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.amenitiesTable td {
+  font-size: 17px;
+  padding: 12px 32px;
+}
+
+.amenitiesTable td:not(:last-of-type) {
+  border-right: 1px solid #e8e8e8;
+}
+
+.amenitiesTable tr:not(:last-of-type) {
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.amenityIcon {
+  color: rgb(128, 12, 35);
+  margin-right: 12px;
+}
+
+.amenity {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.marginTop {
+  margin-top: 24px;
+}

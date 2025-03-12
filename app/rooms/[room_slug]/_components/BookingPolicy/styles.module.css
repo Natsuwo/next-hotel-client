@@ -1,0 +1,17 @@
+.BookingPolicySection {
+  padding: 60px 0px;
+} 
+
+.accordion {
+  width: 100%;
+  max-width: 800px;
+  gap: 20px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.accordionItem:not(:last-of-type) {
+  border-bottom: 1px solid #e8e8e8;
+}

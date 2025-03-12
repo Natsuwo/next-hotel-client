@@ -1,0 +1,90 @@
+.overviewDescription {
+  padding: 12px;
+  border: 1px solid #dedede;
+}
+
+.overviewDescription h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.bookingSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.bookingSummary h3 {
+  font-size: 18px;
+  padding: 6px 0px;
+  font-weight: 500;
+  border-bottom: 1px solid #dedede;
+  margin-bottom: 4px;
+}
+
+.bookingSummary p {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.bookingSummary p span:first-of-type {
+  color: #656a70;
+}
+
+.bookingSummary p span:last-of-type {
+  color: #131313;
+  font-weight: 600;
+}
+
+.totalPrice {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  padding-top: 8px;
+  margin-top: 24px;
+  border-top: 1px solid #dedede;
+}
+
+.totalPricespan:first-of-type {
+  color: #656a70;
+}
+
+.totalPrice span:last-of-type {
+  color: #dc143c;
+  font-weight: 600;
+}
+
+.formControl {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formItem {
+  display: flex;
+  gap: 4px;
+}
+
+.formItem input {
+  flex: 1;
+}
+
+.formItem button {
+  padding: 8px;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+.formItem button:hover {
+  background-color: #e9ecef;
+}
+
+.formInput {
+  padding: 8px;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+}

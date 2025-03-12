@@ -1,0 +1,41 @@
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.buttonsContainer button:not(.closeButton) {
+  width: 100%;
+  min-width: 98px
+}
+
+.closeButton, .overviewButton {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #dc143c;
+  background-color: #fff;
+  border-radius: 50%;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overviewButton {
+  background-color: #333;
+  color: #fff;
+  transition: all 150ms linear;
+  padding: 12px;
+}
+
+.overviewButton:hover {
+  background-color: #161616;
+}
