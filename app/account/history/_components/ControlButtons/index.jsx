@@ -10,6 +10,7 @@ import axios from "axios";
 import Link from "next/link";
 
 function ControlButtons({
+  session,
   paidAmount,
   deleteAction,
   reservation,
@@ -80,6 +81,7 @@ function ControlButtons({
         <Modal.Overlay hideOnLargerScreens={false}>
           <Modal.Wrapper hideOnLargerScreens={false}>
             <ReservationOverview
+              session={session}
               paidAmount={paidAmount}
               reservation={reservation}
               allowDelete={false}

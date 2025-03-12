@@ -194,6 +194,7 @@ export async function updateReseration(
   total_price,
   tax_price,
   vat_price,
+  total_discount,
   check_in,
   check_out
 ) {
@@ -206,6 +207,7 @@ export async function updateReseration(
       vat_price,
       check_in,
       check_out,
+      total_discount,
     },
     {
       Authorization: `Bearer ${accessToken}`,

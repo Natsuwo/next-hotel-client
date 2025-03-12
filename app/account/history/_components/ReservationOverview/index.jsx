@@ -8,16 +8,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBan, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import DeleteForm from "../DeleteFrom";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CancelButton from "../CancelButton";
 
 import { useFormState } from "react-dom";
-
-const SUPABASE_ROOMS_URL = process.env.NEXT_PUBLIC_SUPABASE_IMGS_URL;
+import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
+import api from "@/app/_lib/supabase/api";
 
 const initialState = { error: "" };
 
 function ReservationOverview({
+  session,
   paidAmount,
   deleteAction,
   reservation,
@@ -26,6 +28,40 @@ function ReservationOverview({
   children,
 }) {
   const [showCancel, setShowCancel] = useState(false);
+  const [showRating, setShowRating] = useState(false);
+  const [comment, setComment] = useState("");
+  const [rating, setRating] = useState(reservation.rating || 0);
+  const [hover, setHover] = useState(0);
+
+  const handleRating = async (newRating) => {
+    setRating(newRating);
+    setShowRating(true);
+  };
+
+  const handleSubmitRating = async () => {
+    const accessToken = session?.accessToken;
+    const user = session?.user;
+    const booking_id = reservation.id;
+    const guest_id = user.id;
+    const room_id = reservation.room_id;
+    const room_type_id = reservation.room.room_type_id;
+    await api.post(
+      "/guest/rating",
+      {
+        booking_id,
+        guest_id,
+        room_id,
+        room_type_id,
+        rating,
+        comment,
+      },
+      {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      }
+    );
+    setShowRating(false);
+  };
 
   const [state, formAction] = useFormState(
     reservationCancelAction,
@@ -38,6 +74,105 @@ function ReservationOverview({
 
     await formAction(cancelForm);
   }
+
+  useEffect(() => {
+    if (session) {
+      (async () => {
+        const accessToken = session?.accessToken;
+        const user = session?.user;
+        const booking_id = reservation.id;
+        const guest_id = user.id;
+        const room_id = reservation.room_id;
+        const room_type_id = reservation.room.room_type_id;
+        const query = `?booking_id=${booking_id}&guest_id=${guest_id}&room_id=${room_id}&room_type_id=${room_type_id}`;
+        const { data, success } = await api.get("/guest/rating" + query, {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        });
+
+        if (success) {
+          setRating(data?.rating);
+          setComment(data?.comment);
+        }
+      })();
+    }
+  }, [session]);
+
+  if (showRating)
+    return (
+      <div className={styles.overviewContainer}>
+        <Card>
+          <Card.Thumbnail zoomOnHover={false}>
+            {reservation?.thumbnail && (
+              <Image
+                fill
+                src={`${reservation?.thumbnail}`}
+                alt={`${reservation?.room?.room_number} thumbnail`}
+              />
+            )}
+
+            {/* <Image fill src={"/bg.png"} /> */}
+          </Card.Thumbnail>
+          <Card.Description className={styles.overviewDescription}>
+            <h2>Rating</h2>
+            <div className={styles.ratingContainer}>
+              {[...Array(5)].map((star, index) => {
+                index += 1;
+                return (
+                  <button
+                    type="button"
+                    key={index}
+                    className={
+                      index <= (hover || rating) ? styles.on : styles.off
+                    }
+                    onClick={() => setRating(index)}
+                    onMouseEnter={() => setHover(index)}
+                    onMouseLeave={() => setHover(rating)}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      padding: 0,
+                      fontSize: "1.5rem",
+                      color: index <= (hover || rating) ? "#ffc107" : "#e4e5e9",
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={
+                        index <= (hover || rating) ? solidStar : regularStar
+                      }
+                    />
+                  </button>
+                );
+              })}
+            </div>
+            <textarea
+              name="comment"
+              id="comment"
+              className={styles.formComment}
+              placeholder="Leave a comment"
+              onChange={(e) => setComment(e.target.value)}
+            >
+              {comment}
+            </textarea>
+            <div className={styles.actionsContainer}>
+              <button
+                className={styles.acceptButton}
+                onClick={handleSubmitRating}
+              >
+                Confirm
+              </button>
+              <button
+                className={styles.backButton}
+                onClick={() => setShowRating(false)}
+              >
+                Go Back
+              </button>
+            </div>
+          </Card.Description>
+        </Card>
+      </div>
+    );
 
   if (showCancel)
     return (
@@ -89,6 +224,39 @@ function ReservationOverview({
 
         <Card.Description className={styles.overviewDescription}>
           <h2>{reservation?.room?.room_type?.title}</h2>
+          <div className="ratings">
+            <div className={styles.ratingContainer}>
+              {[...Array(5)].map((star, index) => {
+                index += 1;
+                return (
+                  <button
+                    type="button"
+                    key={index}
+                    className={
+                      index <= (hover || rating) ? styles.on : styles.off
+                    }
+                    onClick={() => handleRating(index)}
+                    onMouseEnter={() => setHover(index)}
+                    onMouseLeave={() => setHover(rating)}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      padding: 0,
+                      fontSize: "1.5rem",
+                      color: index <= (hover || rating) ? "#ffc107" : "#e4e5e9",
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={
+                        index <= (hover || rating) ? solidStar : regularStar
+                      }
+                    />
+                  </button>
+                );
+              })}
+            </div>
+          </div>
           <div className={styles.bookingSummary}>
             <h3>Booking Summary</h3>
             <p>

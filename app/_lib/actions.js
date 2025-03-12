@@ -84,6 +84,7 @@ export async function reservationUpdateAction(prevState, formData) {
   const tax_price = formData.get("tax_price");
   const vat_price = formData.get("vat_price");
   const reservation_id = formData.get("reservation_id");
+  const total_discount = formData.get("total_discount");
 
   // CHECKING FOR DATES VALIDATION THAT WAS PICKED UP BY REACT DAYPICKER
   if (!(isValid(check_in) && isValid(check_out)))
@@ -186,6 +187,7 @@ export async function reservationUpdateAction(prevState, formData) {
     total_price,
     tax_price,
     vat_price,
+    total_discount,
     check_in,
     check_out
   );

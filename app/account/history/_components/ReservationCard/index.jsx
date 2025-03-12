@@ -16,9 +16,7 @@ import {
 import { formatToAbrFormat } from "@/app/utils/datetime";
 import { differenceInDays, isFuture, isPast } from "date-fns";
 
-const SUPABASE_ROOMS_URL = process.env.NEXT_PUBLIC_SUPABASE_IMGS_URL;
-
-function ReservationCard({ reservation }) {
+async function ReservationCard({ reservation }) {
   async function deleteReservationAction(prevState, formData) {
     "use server";
 
@@ -63,6 +61,8 @@ function ReservationCard({ reservation }) {
     (acc, item) => acc + item.amount,
     0
   );
+
+  const session = await auth();
 
   return (
     <article className={styles.reservationItem}>
@@ -135,6 +135,7 @@ function ReservationCard({ reservation }) {
           {/* USE 3rd PARTY API FOR CURRENCY CONVERSION */}
 
           <ControlButtons
+            session={session}
             paidAmount={paidAmount}
             reservationUpdateAction={reservationUpdateAction}
             deleteAction={deleteReservationAction}

@@ -15,6 +15,8 @@ function CheckoutOverview({
   setTaxPrice,
   setVatPrice,
   setTotalPrice,
+  setTotalDiscount,
+  totalDiscount,
   vatPrice,
   taxPrice,
   totalPrice,
@@ -25,7 +27,6 @@ function CheckoutOverview({
   const [totalMinusPaid, setTotalMinusPaid] = useState(0);
   const [isPaid, setIsPaid] = useState(false);
   const [paidAmount, setPaidAmount] = useState(0);
-  const [totalDiscount, setTotalDiscount] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
@@ -47,13 +48,7 @@ function CheckoutOverview({
       const totalDiscount = reservation?.invoice
         .filter((inv) => inv.status === "paid")
         .reduce((acc, inv) => acc + inv.discount_coupon, 0);
-      const membershipDiscount = guest?.membership?.discount
-        ? (totalPerNight + taxPrice + vatPrice) *
-          (guest?.membership?.discount / 100)
-        : 0;
-      const total = Math.round(
-        totalPerNight + taxPrice + vatPrice - membershipDiscount - totalDiscount
-      );
+      const total = totalPerNight + taxPrice + vatPrice - totalDiscount;
 
       setSubtotal(totalPerNight + taxPrice + vatPrice);
       setTaxPrice(taxPrice);
@@ -144,7 +139,7 @@ function CheckoutOverview({
               <span>-{guest?.membership?.discount}%</span>
             </p>
             <p>
-              <span>Coupon:</span>
+              <span>Discount + Coupon:</span>
               <span>-${totalDiscount}</span>
             </p>
             <p>

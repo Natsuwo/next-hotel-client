@@ -65,7 +65,7 @@ async function RoomContainer({ params }) {
           check_out,
           adults,
           room_id,
-          duration: nights,
+          duration: nights ?? 1,
           adults,
           child,
         }),

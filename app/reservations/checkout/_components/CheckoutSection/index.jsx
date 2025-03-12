@@ -43,6 +43,7 @@ async function CheckoutSection() {
     pending_reservation.check_out,
     pending_reservation.check_in
   );
+
   const totalPrice = room?.room_type?.price_per_night * totalNights;
   const taxPrice =
     totalPrice * (settings.tax ? parseFloat(settings.tax) / 100 : 0);

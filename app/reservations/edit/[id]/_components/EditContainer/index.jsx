@@ -21,6 +21,7 @@ function EditContainer({ reservation, reservationUpdateAction, guest }) {
   const [totalPrice, setTotalPrice] = useState(0);
   const [taxPrice, setTaxPrice] = useState(0);
   const [vatPrice, setVatPrice] = useState(0);
+  const [totalDiscount, setTotalDiscount] = useState(0);
   // const [startDate, setStartDate] = useState(
   //   formatISO(new Date(reservation?.check_in), { representation: "date" })
   // );
@@ -48,6 +49,7 @@ function EditContainer({ reservation, reservationUpdateAction, guest }) {
     reservationFormData.set("tax_price", taxPrice);
     reservationFormData.set("vat_price", vatPrice);
     reservationFormData.set("reservation_id", reservation.id);
+    reservationFormData.set("total_discount", totalDiscount);
 
     await formAction(reservationFormData);
   }
@@ -75,6 +77,8 @@ function EditContainer({ reservation, reservationUpdateAction, guest }) {
         setTotalPrice={setTotalPrice}
         setTaxPrice={setTaxPrice}
         setVatPrice={setVatPrice}
+        setTotalDiscount={setTotalDiscount}
+        totalDiscount={totalDiscount}
         vatPrice={vatPrice}
         taxPrice={taxPrice}
         totalPrice={totalPrice}

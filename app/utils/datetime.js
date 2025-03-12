@@ -7,7 +7,7 @@ export function formatToAbrFormat(dateString) {
 }
 
 export function daysDifferCount(before, after) {
-  return differenceInCalendarDays(new Date(before), new Date(after));
+  return differenceInCalendarDays(new Date(before), new Date(after)) || 1;
 }
 
 export function calculateDiscount(price, coupon) {
