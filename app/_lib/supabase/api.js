@@ -1,6 +1,7 @@
 class APIClient {
-  constructor(baseURL) {
+  constructor(baseURL, timeout = 60000) {
     this.baseURL = baseURL;
+    this.timeout = timeout;
   }
 
   buildURL(endpoint) {
@@ -8,6 +9,8 @@ class APIClient {
   }
 
   async request(endpoint, options = {}) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), this.timeout);
     try {
       const response = await fetch(this.buildURL(endpoint), {
         headers: {
@@ -16,11 +19,15 @@ class APIClient {
         },
         ...options,
       });
+
+      clearTimeout(timeoutId);
+
       if (!response.ok) {
         return { ...(await response.json()), success: false };
       }
       return await response.json();
     } catch (error) {
+      clearTimeout(timeoutId);
       console.error("API request error:", error);
       return { error, success: false };
     }
@@ -62,6 +69,7 @@ class APIClient {
 }
 
 const api = new APIClient(
-  process.env.NEXT_PUBLIC_BACKEND_API ?? "http://localhost:8000/api"
+  process.env.NEXT_PUBLIC_BACKEND_API ?? "http://localhost:8000/api",
+  60000
 );
 export default api;
