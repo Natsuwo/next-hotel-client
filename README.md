@@ -2,9 +2,10 @@
 
 ## Table of Contents
 
-Edit from: [https://github.com/OthmaneNissoukin/nextjs-hotel-booking]
+Edit from: https://github.com/OthmaneNissoukin/nextjs-hotel-booking
 Use laravel for backend & Rest API.
-Backend: [https://github.com/Natsuwo/hotel-laravel]
+## Backend
+https://github.com/Natsuwo/hotel-laravel
 
 ## Usage
 1. npm install
